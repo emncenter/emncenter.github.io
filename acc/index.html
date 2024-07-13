@@ -34,16 +34,23 @@
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .register-btn {
+            margin-top: 20px;
         }
         .register-btn:hover, .login-btn:hover {
             background-color: #0056b3;
+        }
+        .btn-label {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         .login-btn {
             display: none;
@@ -52,23 +59,28 @@
 </head>
 <body>
     <div class="container">
+        <div class="btn-label" id="buttonLabel">KAYIT OL</div>
         <h1>Kullanıcı Adı ve Şifre</h1>
         <input type="text" id="username" name="username" placeholder="Kullanıcı Adı" required>
         <input type="password" id="password" name="password" placeholder="Şifre" required>
-        <button class="register-btn" onclick="toggleButtons()">Kayıt Ol</button>
         <button class="login-btn" onclick="toggleButtons()">Giriş Yap</button>
     </div>
+    <button class="register-btn" onclick="toggleButtons()">Kayıt Ol</button>
 
     <script>
         function toggleButtons() {
             const registerBtn = document.querySelector('.register-btn');
             const loginBtn = document.querySelector('.login-btn');
+            const buttonLabel = document.getElementById('buttonLabel');
+            
             if (registerBtn.style.display === 'none') {
                 registerBtn.style.display = 'block';
                 loginBtn.style.display = 'none';
+                buttonLabel.textContent = 'KAYIT OL';
             } else {
                 registerBtn.style.display = 'none';
                 loginBtn.style.display = 'block';
+                buttonLabel.textContent = 'GİRİŞ YAP';
             }
         }
     </script>
