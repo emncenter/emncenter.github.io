@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anasayfa</title>
+    <title>Hesap Aç / Giriş Yap</title>
     <style>
         body {
             display: flex;
@@ -15,27 +15,58 @@
             background-color: #f0f0f0;
         }
         .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 300px;
+            position: relative;
         }
-        .container button {
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .register-btn, .login-btn {
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
-        .container button:hover {
+        .register-btn {
+            display: block;
+        }
+        .login-btn {
+            display: none;
+        }
+        .register-btn:hover, .login-btn:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hoş Geldiniz</h1>
-        <p>Hesabınız yoksa veya giriş yapmadıysanız lütfen aşağıdaki butona tıklayın.</p>
-        <button onclick="window.location.href='https://emncenter.github.io/acc/'">Hesap Aç / Giriş Yap</button>
+        <h1>Kullanıcı Adı ve Şifre</h1>
+        <input type="text" id="username" name="username" placeholder="Kullanıcı Adı" required>
+        <input type="password" id="password" name="password" placeholder="Şifre" required>
+        <button class="register-btn" onclick="showLogin()">Kayıt Ol</button>
+        <button class="login-btn">Giriş Yap</button>
     </div>
+
+    <script>
+        function showLogin() {
+            document.querySelector('.register-btn').style.display = 'none';
+            document.querySelector('.login-btn').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
