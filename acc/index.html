@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMN Center'da Hesap Aç</title>
+    <title>Giriş Yap / Kaydol</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,11 +101,11 @@
         <div class="button-container">
             <button id="loginButton" onclick="login()">Giriş</button>
             <button class="secondary-button" onclick="toggleAction()">Hesabın Yok mu?</button>
-
-            <div class="terms">
-    Kaydolarak <a href="https://emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartları</a>'nı kabul edersiniz!
-</div>
-
+        </div>
+        <div class="terms">
+            Kaydolarak <a href="https://emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartlarını </a> kabul edersiniz!
+        </div>
+    </div>
 
     <script>
         function login() {
@@ -130,6 +130,28 @@
                 document.querySelector('.secondary-button').textContent = "Hesabın Yok mu?";
                 container.classList.remove('active'); // Terms'i gizle
             }
+        }
+
+        function validateRegister() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (actionText.textContent === "EMN Center'a Kaydol") {
+                if (username.length < 4 || username.length > 20) {
+                    alert("Kullanıcı adı 4 ile 20 karakter arasında olmalıdır.");
+                    return false;
+                }
+                if (password.length < 8 || password.length > 15) {
+                    alert("Şifre 8 ile 15 karakter arasında olmalıdır.");
+                    return false;
+                }
+            }
+
+            // Burada kayıt işlemini gerçekleştirme veya başka bir işlem yapma kodu eklenebilir.
+            // Örneğin:
+            // submitForm(); // Formu göndermek için bir fonksiyon çağrılabilir.
+
+            return true;
         }
     </script>
 </body>
