@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hesap Açma</title>
+    <title>Hesap Aç / Giriş Yap</title>
     <style>
         body {
             display: flex;
@@ -16,20 +16,21 @@
         }
         .container {
             background: #fff;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px;
+            width: 400px;
+            position: relative;
         }
-        input[type="text"] {
-            width: 100%;
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        input[type="submit"] {
+        .register-btn, .login-btn {
             background-color: #007BFF;
             color: white;
             border: none;
@@ -37,20 +38,39 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
         }
-        input[type="submit"]:hover {
+        .register-btn:hover, .login-btn:hover {
             background-color: #0056b3;
+        }
+        .login-btn {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hesap Aç</h1>
-        <form action="/create-account" method="post">
-            <input type="text" name="username" placeholder="Kullanıcı Adı" required>
-            <input type="submit" value="Oluştur">
-        </form>
+        <h1>Kullanıcı Adı ve Şifre</h1>
+        <input type="text" id="username" name="username" placeholder="Kullanıcı Adı" required>
+        <input type="password" id="password" name="password" placeholder="Şifre" required>
+        <button class="register-btn" onclick="toggleButtons()">Kayıt Ol</button>
+        <button class="login-btn" onclick="toggleButtons()">Giriş Yap</button>
     </div>
+
+    <script>
+        function toggleButtons() {
+            const registerBtn = document.querySelector('.register-btn');
+            const loginBtn = document.querySelector('.login-btn');
+            if (registerBtn.style.display === 'none') {
+                registerBtn.style.display = 'block';
+                loginBtn.style.display = 'none';
+            } else {
+                registerBtn.style.display = 'none';
+                loginBtn.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
-
