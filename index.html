@@ -3,26 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basit HTML Örneği</title>
+    <title>Anasayfa</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>Hoş Geldiniz</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Anasayfa</a></li>
-                <li><a href="#about">Hakkında</a></li>
-                <li><a href="#contact">İletişim</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home">
-            <h2>Anasayfa</h2>
-            <p>Bu basit bir HTML sayfasıdır.</p>
-        </section>
-
-        <section id="about">
-            <h2>Hakkında</h2>
-            <p>Bu sayfa, HTML'in
+        <p>Hesabınız yoksa veya giriş yapmadıysanız lütfen aşağıdaki butona tıklayın.</p>
+        <button onclick="window.location.href='https://emncenter.github.io/acc/'">Hesap Aç / Giriş Yap</button>
+    </div>
+</body>
+</html>
