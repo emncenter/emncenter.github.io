@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMN Center'da Hesap Aç</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .login-container .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .login-container .button-container button {
+            flex: 0.45;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .login-container .button-container button:hover {
+            background-color: #45a049;
+        }
+        .login-container .button-container .secondary-button {
+            flex: 0.45;
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .login-container .button-container .secondary-button:hover {
+            background-color: #bbb;
+        }
+        .login-container .terms {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+            display: none; /* Başlangıçta gizli */
+        }
+        .login-container .terms a {
+            color: #007bff; /* Mavi renk */
+            text-decoration: none;
+        }
+        .login-container .terms a:hover {
+            text-decoration: underline;
+        }
+        .login-container.active .terms {
+            display: block; /* Toggle edildiğinde görünür */
+        }
+        @media (max-width: 400px) {
+            .login-container .button-container button, .login-container .button-container .secondary-button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 id="action-text">EMN Center'a Giriş Yap</h2>
+        <input type="text" id="username" placeholder="Kullanıcı Adı" autocomplete="off"><br>
+        <input type="password" id="password" placeholder="Şifre"><br>
+        <div class="button-container">
+            <button id="loginButton" onclick="login()">Giriş</button>
+            <button class="secondary-button" onclick="toggleAction()">Hesabın Yok mu?</button>
+        </div>
+        <div class="terms">
+            Kaydolarak <a href="emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartları</a>nı kabul edersiniz!
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            alert("Kullanıcı Adı: " + username + "\nŞifre: " + password);
+        }
+
+        function toggleAction() {
+            var actionText = document.getElementById("action-text");
+            var loginButton = document.getElementById("loginButton");
+            var container = document.querySelector('.login-container');
+
+            if (actionText.textContent === "EMN Center'a Giriş Yap") {
+                actionText.textContent = "EMN Center'a Kaydol";
+                loginButton.textContent = "Kaydol";
+                document.querySelector('.secondary-button').textContent = "Hesabın Var mı?";
+                container.classList.add('active'); // Terms'i göster
+            } else {
+                actionText.textContent = "EMN Center'a Giriş Yap";
+                loginButton.textContent = "Giriş";
+                document.querySelector('.secondary-button').textContent = "Hesabın Yok mu?";
+                container.classList.remove('active'); // Terms'i gizle
+            }
+        }
+    </script>
+</body>
+</html>
