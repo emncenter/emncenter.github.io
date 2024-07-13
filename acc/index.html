@@ -30,58 +30,74 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .register-btn, .login-btn {
+        .register-btn, .login-btn, .have-account-btn, .no-account-btn {
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             text-transform: uppercase;
             font-weight: bold;
+            margin-top: 10px;
         }
-        .register-btn {
-            margin-top: 20px;
+        .register-btn, .login-btn {
+            display: none;
         }
-        .register-btn:hover, .login-btn:hover {
-            background-color: #0056b3;
+        .no-account-btn {
+            float: right;
         }
         .btn-label {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .login-btn {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="btn-label" id="buttonLabel">KAYIT OL</div>
+        <div class="btn-label" id="buttonLabel">Hesabın var mı?</div>
         <h1>Kullanıcı Adı ve Şifre</h1>
         <input type="text" id="username" name="username" placeholder="Kullanıcı Adı" required>
         <input type="password" id="password" name="password" placeholder="Şifre" required>
-        <button class="login-btn" onclick="toggleButtons()">Giriş Yap</button>
+        <button class="login-btn" onclick="login()">Giriş Yap</button>
     </div>
-    <button class="register-btn" onclick="toggleButtons()">Kayıt Ol</button>
+    <button class="register-btn" onclick="register()">Kayıt Ol</button>
+    <button class="no-account-btn" onclick="toggleButtons()">Hesabın yok mu?</button>
+    <button class="have-account-btn" onclick="toggleButtons()">Hesabın var mı?</button>
 
     <script>
         function toggleButtons() {
+            const haveAccountBtn = document.querySelector('.have-account-btn');
+            const noAccountBtn = document.querySelector('.no-account-btn');
+            const buttonLabel = document.getElementById('buttonLabel');
             const registerBtn = document.querySelector('.register-btn');
             const loginBtn = document.querySelector('.login-btn');
-            const buttonLabel = document.getElementById('buttonLabel');
-            
-            if (registerBtn.style.display === 'none') {
-                registerBtn.style.display = 'block';
-                loginBtn.style.display = 'none';
-                buttonLabel.textContent = 'KAYIT OL';
-            } else {
+
+            if (haveAccountBtn.style.display === 'none') {
+                haveAccountBtn.style.display = 'block';
+                noAccountBtn.style.display = 'none';
+                buttonLabel.textContent = 'Hesabın var mı?';
                 registerBtn.style.display = 'none';
                 loginBtn.style.display = 'block';
-                buttonLabel.textContent = 'GİRİŞ YAP';
+            } else {
+                haveAccountBtn.style.display = 'none';
+                noAccountBtn.style.display = 'block';
+                buttonLabel.textContent = 'Hesabın yok mu?';
+                registerBtn.style.display = 'block';
+                loginBtn.style.display = 'none';
             }
+        }
+
+        function register() {
+            // Kayıt işlemleri
+            alert('Kayıt olma işlemi yapılacak.');
+        }
+
+        function login() {
+            // Giriş işlemleri
+            alert('Giriş yapma işlemi yapılacak.');
         }
     </script>
 </body>
