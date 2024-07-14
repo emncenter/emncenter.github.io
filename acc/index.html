@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: white;
         }
         .login-container {
             background-color: #fff;
@@ -86,9 +87,8 @@
         .login-container.active .terms {
             display: block; /* Toggle edildiğinde görünür */
         }
-        #output {
+        .output-container {
             margin-top: 20px;
-            color: white;
             background-color: #333;
             padding: 10px;
             border-radius: 4px;
@@ -113,17 +113,23 @@
         <div class="terms">
             Kaydolarak <a href="https://emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartlarını </a> kabul edersiniz!
         </div>
-        <div id="output"></div>
+    </div>
+    <div class="output-container" id="output-container">
+        <p id="username-output"></p>
+        <p id="password-output"></p>
     </div>
 
     <script>
         function displayInput() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            var outputDiv = document.getElementById("output");
+            var outputContainer = document.getElementById("output-container");
+            var usernameOutput = document.getElementById("username-output");
+            var passwordOutput = document.getElementById("password-output");
 
-            outputDiv.textContent = "Kullanıcı Adı: " + username + "\nŞifre: " + password;
-            outputDiv.style.display = "block";
+            usernameOutput.textContent = "Kullanıcı Adı: " + username;
+            passwordOutput.textContent = "Şifre: " + password;
+            outputContainer.style.display = "block";
         }
 
         function toggleAction() {
