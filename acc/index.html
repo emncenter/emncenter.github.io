@@ -99,7 +99,7 @@
         <input type="text" id="username" placeholder="Kullanıcı Adı" autocomplete="off"><br>
         <input type="password" id="password" placeholder="Şifre"><br>
         <div class="button-container">
-            <button id="loginButton" onclick="login()">Giriş</button>
+            <button id="loginButton" onclick="submitForm()">Giriş</button>
             <button class="secondary-button" onclick="toggleAction()">Hesabın Yok mu?</button>
         </div>
         <div class="terms">
@@ -108,10 +108,32 @@
     </div>
 
     <script>
-        function login() {
+        function submitForm() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            alert("Kullanıcı Adı: " + username + "\nŞifre: " + password);
+            var actionText = document.getElementById("action-text").textContent;
+
+            var endpoint = actionText === "EMN Center'a Giriş Yap" ? "/login" : "/register";
+            var payload = {
+                username: username,
+                password: password
+            };
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Response: " + JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
         }
 
         function toggleAction() {
@@ -130,28 +152,6 @@
                 document.querySelector('.secondary-button').textContent = "Hesabın Yok mu?";
                 container.classList.remove('active'); // Terms'i gizle
             }
-        }
-
-        function validateRegister() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            if (actionText.textContent === "EMN Center'a Kaydol") {
-                if (username.length < 4 || username.length > 20) {
-                    alert("Kullanıcı adı 4 ile 20 karakter arasında olmalıdır.");
-                    return false;
-                }
-                if (password.length < 8 || password.length > 15) {
-                    alert("Şifre 8 ile 15 karakter arasında olmalıdır.");
-                    return false;
-                }
-            }
-
-            // Burada kayıt işlemini gerçekleştirme veya başka bir işlem yapma kodu eklenebilir.
-            // Örneğin:
-            // submitForm(); // Formu göndermek için bir fonksiyon çağrılabilir.
-
-            return true;
         }
     </script>
 </body>
