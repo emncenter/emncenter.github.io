@@ -86,6 +86,14 @@
         .login-container.active .terms {
             display: block; /* Toggle edildiğinde görünür */
         }
+        #output {
+            margin-top: 20px;
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            display: none; /* Başlangıçta gizli */
+        }
         @media (max-width: 400px) {
             .login-container .button-container button, .login-container .button-container .secondary-button {
                 flex: 1;
@@ -99,41 +107,23 @@
         <input type="text" id="username" placeholder="Kullanıcı Adı" autocomplete="off"><br>
         <input type="password" id="password" placeholder="Şifre"><br>
         <div class="button-container">
-            <button id="loginButton" onclick="submitForm()">Giriş</button>
+            <button id="loginButton" onclick="displayInput()">Giriş</button>
             <button class="secondary-button" onclick="toggleAction()">Hesabın Yok mu?</button>
         </div>
         <div class="terms">
             Kaydolarak <a href="https://emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartlarını </a> kabul edersiniz!
         </div>
+        <div id="output"></div>
     </div>
 
     <script>
-        function submitForm() {
+        function displayInput() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            var actionText = document.getElementById("action-text").textContent;
+            var outputDiv = document.getElementById("output");
 
-            var endpoint = actionText === "EMN Center'a Giriş Yap" ? "/login" : "/register";
-            var payload = {
-                username: username,
-                password: password
-            };
-
-            fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert("Response: " + JSON.stringify(data));
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            });
+            outputDiv.textContent = "Kullanıcı Adı: " + username + "\nŞifre: " + password;
+            outputDiv.style.display = "block";
         }
 
         function toggleAction() {
