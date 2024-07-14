@@ -13,7 +13,6 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: white;
         }
         .login-container {
             background-color: #fff;
@@ -87,14 +86,6 @@
         .login-container.active .terms {
             display: block; /* Toggle edildiğinde görünür */
         }
-        .output-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .output-container p {
-            margin: 5px 0;
-            color: black; /* Metin rengini siyah yap */
-        }
         @media (max-width: 400px) {
             .login-container .button-container button, .login-container .button-container .secondary-button {
                 flex: 1;
@@ -108,29 +99,19 @@
         <input type="text" id="username" placeholder="Kullanıcı Adı" autocomplete="off"><br>
         <input type="password" id="password" placeholder="Şifre"><br>
         <div class="button-container">
-            <button id="loginButton" onclick="displayInput()">Giriş</button>
+            <button id="loginButton" onclick="login()">Giriş</button>
             <button class="secondary-button" onclick="toggleAction()">Hesabın Yok mu?</button>
         </div>
         <div class="terms">
             Kaydolarak <a href="https://emncenter.github.io/gizlilikvehizmet" target="_blank">EMN Studio Gizlilik Sözleşmesi ve Hizmet Şartlarını </a> kabul edersiniz!
         </div>
     </div>
-    <div class="output-container" id="output-container">
-        <p id="username-output"></p>
-        <p id="password-output"></p>
-    </div>
 
     <script>
-        function displayInput() {
+        function login() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            var outputContainer = document.getElementById("output-container");
-            var usernameOutput = document.getElementById("username-output");
-            var passwordOutput = document.getElementById("password-output");
-
-            usernameOutput.textContent = "Kullanıcı Adı: " + username;
-            passwordOutput.textContent = "Şifre: " + password;
-            outputContainer.style.display = "block";
+            alert("Kullanıcı Adı: " + username + "\nŞifre: " + password);
         }
 
         function toggleAction() {
@@ -149,6 +130,28 @@
                 document.querySelector('.secondary-button').textContent = "Hesabın Yok mu?";
                 container.classList.remove('active'); // Terms'i gizle
             }
+        }
+
+        function validateRegister() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (actionText.textContent === "EMN Center'a Kaydol") {
+                if (username.length < 4 || username.length > 20) {
+                    alert("Kullanıcı adı 4 ile 20 karakter arasında olmalıdır.");
+                    return false;
+                }
+                if (password.length < 8 || password.length > 15) {
+                    alert("Şifre 8 ile 15 karakter arasında olmalıdır.");
+                    return false;
+                }
+            }
+
+            // Burada kayıt işlemini gerçekleştirme veya başka bir işlem yapma kodu eklenebilir.
+            // Örneğin:
+            // submitForm(); // Formu göndermek için bir fonksiyon çağrılabilir.
+
+            return true;
         }
     </script>
 </body>
